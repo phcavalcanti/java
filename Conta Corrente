@@ -1,0 +1,103 @@
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class ContaCorrente {
+    public static void main(String[] args) {
+// declaracao de variaveis
+        String nome = "Joseph Stalin";
+        String tipoConta = "Conta Corrente";
+        double saldo = 1599.99;
+
+        int qtd = 30;//criando arry com asteriscos para separar  os tópicos
+        char sep = '*';
+        char[] arraySep = new char[qtd];// informei o tamanho
+        Arrays.fill(arraySep, sep); // preencheu o array
+        String stringComSep = new String(arraySep);//criou a string
+
+        System.out.println(stringComSep);
+
+        System.out.println(String.format("""
+                                
+                Nome: %s
+                Tipo de conta: %s
+                Saldo : R$ %.2f 
+                """, nome, tipoConta, saldo));
+
+
+
+// criando menu
+
+
+        Scanner entradas = new Scanner(System.in);
+        int opcao = -1;
+
+
+        String menu = """
+                *** OPERAÇÕES DISPONÍVEIS:
+                
+                1 - Consulta de saldo;
+                2 - Transferir/Sacar Valor;
+                3 - Depositar Valor;
+                                
+                0 - Encerrar programa
+                
+                ** Qual operação deseja realizar:\n                
+                """;
+        while (opcao != 0) {
+            System.out.println(arraySep);
+            System.out.println(menu);
+            opcao = entradas.nextInt();
+            System.out.println(arraySep);
+
+            if (opcao == 1) {
+                System.out.println("Opção Escolhida:");
+                System.out.println("CONSULTA DE SALDO");
+                System.out.println(String.format("Saldo : R$ %.2f\n", saldo));
+
+            } else if (opcao == 2) {
+
+                System.out.println("Opção Escolhida:");
+                System.out.println("SAQUE/TRANSFERENCIA");
+                System.out.println("Digite o valor : \n");
+                double saque = entradas.nextDouble();
+
+                if (saque > saldo) {
+                    System.out.println("Valor acima do seu saldo, não é possível realizar esta operacao.\n");
+
+                } else {
+                    saldo = saldo - saque;
+                    System.out.println("Saque/Transferencia Realizada. ");
+                    System.out.println(String.format("Saque: R$ %.2f", saque));
+                    System.out.println(String.format("Saldo: R$ %.2f\n",saldo));
+                }
+
+
+            } else if (opcao == 3) {
+                System.out.println("Opção Escolhida:");
+                System.out.println("DEPOSITO");
+                System.out.println("Digite o valor : \n");
+                double deposito = entradas.nextDouble();
+
+                saldo = saldo + deposito;
+
+                System.out.println("Deposito Realizado ");
+                System.out.println(String.format("Deposito: R$ %.2f", deposito));
+                System.out.println(String.format("Saldo: R$ %.2f\n", saldo));
+
+
+            } else if (opcao == 0) {
+                System.out.println("Encerrando programa...\n");
+                System.out.println("fim de programa");
+                break;
+            } else{
+                System.out.println("Entrada Inválida\n");
+
+        }
+        }
+        }
+    }
+
+
+                    
+
